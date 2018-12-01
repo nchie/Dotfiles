@@ -1,0 +1,5 @@
+# Ignore the installed plugins
+plugged/**
+!plugged/.gitkeep
+~*
+.netrwhist
