@@ -1,112 +1,19 @@
-" Oni specifics
+" oni specifics
 set nocompatible
-filetype off 
+filetype off
 set hidden
 
 set number
 set noswapfile
 set smartcase
 
-" If using Oni's externalized statusline, hide vim's native statusline, 
+" If using Oni's externalized statusline, hide vim's native statusline,
 " set noshowmode
 " set noruler
 " set laststatus=0
 " set noshowcmd
 
-" General 
-set mouse=a
-set colorcolumn=80
-set nowrap
-set number
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set expandtab
-set splitbelow
-set splitright
-set cursorline
-
-" Vim-Plug
-call plug#begin('~/.config/nvim/plugged')
-Plug 'scrooloose/nerdtree'
-Plug 'vim-airline/vim-airline'
-Plug 'tomasiser/vim-code-dark'
-Plug 'tpope/vim-commentary'
-Plug 'shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'rust-lang/rust.vim'
-Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }  
-" Plug 'w0rp/ale'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-Plug 'ervandew/supertab'
-if has("win32")	
-	Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'powershell -executionpolicy bypass -File install.ps1' }
-else
-	Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
-endif
-call plug#end()
-let g:airline#extensions#tabline#enabled = 1
-let g:SuperTabDefaultCompletionType = "context"
-" let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
-
-" Theme
-colorscheme codedark
-" set background=dark
-set guifont=Menlo:h15
-syntax on
-
-
-" Language Client
-let g:LanguageClient_serverCommands = {
-     \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
-     \ }
-let g:LanguageClient_diagnosticsEnable = 1
-let g:LanguageClient_diagnosticsDisplay = { 
-            \1: { "signText": "💣" },
-            \2: { "signText": "🚩" }
-            \}
-
-" Deoplete
-let g:deoplete#enable_at_startup = 1
-" set completeopt-=preview
-autocmd CompleteDone * pclose!
-call deoplete#custom#option('sources', {
-    \ 'rust': ['LanguageClient'],
-\})
-
-
-" ALE
-let g:ale_sign_error = '💣'
-let g:ale_sign_warning = '🚩'
-let g:ale_statusline_format = ['💣 %d', '🚩 %d', '']
-let g:ale_set_highlights = 1
-let g:ale_set_signs = 1
-highlight ALEError ctermfg=red cterm=undercurl,bold
-highlight ALEWarning ctermfg=yellow cterm=undercurl,bold
-
-let mapleader=" "
-" Window switching
-noremap <C-h> <C-w>h
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
-noremap <C-l> <C-w>l
-
-" Oni specifics
-set nocompatible
-filetype off 
-set hidden
-
-set number
-set noswapfile
-set smartcase
-
-" If using Oni's externalized statusline, hide vim's native statusline, 
-" set noshowmode
-" set noruler
-" set laststatus=0
-" set noshowcmd
-
-" General 
+" General
 set mouse=a
 set colorcolumn=80
 set nowrap
@@ -134,7 +41,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-commentary'
 Plug 'shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'rust-lang/rust.vim'
-Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }  
+Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 " Session handling
 Plug 'tpope/vim-obsession'
 Plug 'dhruvasagar/vim-prosession'
@@ -144,12 +51,18 @@ Plug 'junegunn/fzf.vim'
 Plug 'ervandew/supertab'
 " Themes
 Plug 'tomasiser/vim-code-dark'
-if has("win32")	
+if has("win32")
 	Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'powershell -executionpolicy bypass -File install.ps1' }
 else
 	Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
 endif
 call plug#end()
+
+" Theme
+colorscheme codedark
+" set background=dark
+set guifont=Menlo:h12
+syntax on
 
 let g:airline#extensions#tabline#enabled = 1
 let g:SuperTabDefaultCompletionType = "context"
@@ -158,8 +71,9 @@ let g:SuperTabDefaultCompletionType = "context"
 let g:LanguageClient_serverCommands = {
      \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
      \ }
+
 let g:LanguageClient_diagnosticsEnable = 1
-let g:LanguageClient_diagnosticsDisplay = { 
+let g:LanguageClient_diagnosticsDisplay = {
     \1: { "signText": "💣" },
     \2: { "signText": "🚩" }
 \}
@@ -174,19 +88,16 @@ call deoplete#custom#option('sources', {
 
 
 " ALE
-let g:ale_sign_error = '💣'
-let g:ale_sign_warning = '🚩'
-let g:ale_statusline_format = ['💣 %d', '🚩 %d', '']
-let g:ale_set_highlights = 1
-let g:ale_set_signs = 1
-highlight ALEError ctermfg=red cterm=undercurl,bold
-highlight ALEWarning ctermfg=yellow cterm=undercurl,bold
+" let g:ale_sign_error = '💣'
+" let g:ale_sign_warning = '🚩'
+" let g:ale_statusline_format = ['💣 %d', '🚩 %d', '']
+" let g:ale_set_highlights = 1
+" let g:ale_set_signs = 1
+highlight ALEError ctermfg=red cterm=undercurl,bold guifg=red
+highlight ALEWarning ctermfg=yellow cterm=undercurl,bold guifg=yellow
 
-" Theme
-colorscheme codedark
-" set background=dark
-set guifont=Menlo:h15
-syntax on
+" Simple custom commands
+command! TrimSpaces :%s/\s\+$//
 
 " Mappings
 let mapleader=" "
@@ -202,6 +113,12 @@ noremap <C-n> :nohl<CR>
 noremap Y y$
 inoremap jj <Esc>
 noremap <C-b> :ls<CR>:b<space>
+
+" Indentation using tab
+nnoremap <Tab> >>
+nnoremap <S-Tab> <<
+vnoremap <Tab> >gv
+vnoremap <S-Tab> <gv
 " noremap <Leader>bd :ls<CR>:bd<space>
 " noremap <Leader>bb :ls<CR>:b<space>
 
@@ -220,5 +137,5 @@ noremap <Leader>ir :source $MYVIMRC<CR>
 noremap <Leader>h :call LanguageClient_textDocument_hover()<CR>
 noremap <Leader>d :call LanguageClient_textDocument_definition()<CR>
 noremap <Leader>r :call LanguageClient_textDocument_rename()<CR>
-noremap <Leader>s :call LanugageClient_textDocument_documentSymbol()<CR> 
+noremap <Leader>s :call LanugageClient_textDocument_documentSymbol()<CR>
 
